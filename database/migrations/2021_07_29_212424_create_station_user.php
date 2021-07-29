@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCuvesTable extends Migration
+class CreateStationUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateCuvesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cuves', function (Blueprint $table) {
+        Schema::create('station_user', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("station_id");
-            $table->foreign("station_id")->references("id")->on("stations");
-            $table->float("niveau_cuve");
+            $table->foreignId("station_id")->constrained()->onDelete("cascade");
+            $table->foreignId("user_id")->constrained()->onDelete("cascade");
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateCuvesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cuves');
+        Schema::dropIfExists('station_user');
     }
 }

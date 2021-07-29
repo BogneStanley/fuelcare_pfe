@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Station;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/create', function () {
+    $station = new Station();
+    $station->lieu_station = "yaounde";
+    $station->save();
+    dd($station);
 });

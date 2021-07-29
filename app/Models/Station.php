@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Station extends Model
 {
     use HasFactory;
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'lieu_station',
+    ];
+
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
+
+    public function cuves()
+    {
+        return $this->hasMany(Cuve::class);
+    }
 }

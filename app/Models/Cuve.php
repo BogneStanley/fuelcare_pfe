@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Cuve extends Model
 {
     use HasFactory;
+
+    public function station()
+    {
+        return $this->belongsTo(Station::class);
+    }
 }

@@ -15,6 +15,11 @@ class CreateTachesTable extends Migration
     {
         Schema::create('taches', function (Blueprint $table) {
             $table->id();
+            $table->string("intitule");
+            $table->foreignId("user_id")->constrained()->onDelete("cascade");
+            $table->string("description");
+            $table->boolean("status");
+            $table->string("piece_jointe");
             $table->timestamps();
         });
     }

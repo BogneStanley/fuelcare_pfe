@@ -15,6 +15,8 @@ class CreateDepotagesTable extends Migration
     {
         Schema::create('depotages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("user_id")->constrained()->onDelete("cascade");
+            $table->string("piece_jointe");
             $table->timestamps();
         });
     }
