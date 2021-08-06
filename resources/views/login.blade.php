@@ -12,8 +12,11 @@
 
 
 
+
     <!-- Bootstrap core CSS -->
 <link href="{{ asset("css/app.css") }}" rel="stylesheet" >
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
     <style>
       .bd-placeholder-img {
@@ -77,7 +80,7 @@
 <main class="form-signin">
   <form method="POST" action="{{ route("login") }}">
     @csrf
-    <div class="h1">Fuel<span style="color: #da300a">Care</span></div>
+    <div class="h1"><span style="font-size:40px;color:rgb(255, 60, 0);"><i class="fas fa-gas-pump"></i></span>Fuel<span style="color: #da300a">Care</span></div>
 
     <div class="form-floating">
       <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">

@@ -19,7 +19,7 @@ class CreateTachesTable extends Migration
             $table->foreignId("user_id")->constrained()->onDelete("cascade");
             $table->string("description");
             $table->boolean("status");
-            $table->string("piece_jointe");
+            $table->string("piece_jointe")->nullable();
             $table->timestamps();
         });
     }
