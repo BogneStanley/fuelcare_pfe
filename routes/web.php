@@ -65,10 +65,14 @@ Route::get('admin/profil',[AdminProfil::class, "index"])->name("admin.profil");
 // gerant routes
 Route::delete('gerant/rapports/{id}', [RapportController::class, "delete"])->middleware("auth");
 Route::get('gerant/rapports/{id}', [RapportController::class, "download"])->middleware("auth");
+Route::delete('gerant/depotages/{id}', [DepotageController::class, "delete"])->middleware("auth");
+Route::get('gerant/depotages/{id}', [DepotageController::class, "download"])->middleware("auth");
 Route::get('gerant', [GerantController::class, "index"])->name("gerant.home")->middleware("auth");
 Route::get('gerant/cuves', [CuveController::class, "index"])->name("gerant.cuve")->middleware("auth");
 Route::post('gerant/rapports', [RapportController::class, "create"])->middleware("auth");
 Route::get('gerant/rapports', [RapportController::class, "index"])->name("gerant.rapports")->middleware("auth");
+Route::post('gerant/depotages', [DepotageController::class, "create"])->middleware("auth");
+Route::get('gerant/depotages', [DepotageController::class, "index"])->name("gerant.depotages")->middleware("auth");
 
 
 
