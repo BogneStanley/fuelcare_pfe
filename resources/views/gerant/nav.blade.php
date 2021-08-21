@@ -2,15 +2,40 @@
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="">
+                <a class="nav-link active" aria-current="page" href="{{ route("gerant.home") }}">
                     <span data-feather="home"><i class="fa fa-home" aria-hidden="true"></i></span>
                     Tableau de bord
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route("gerant.cuve")}}">
+                    <span data-feather="file"><i class="fas fa-gas-pump"></i></span>
+                    Etat des cuves
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route("gerant.rapports") }}">
+                    <span data-feather="file"><i class="fas fa-gas-pump"></i></span>
+                    Rapports
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="">
                     <span data-feather="file"><i class="fas fa-gas-pump"></i></span>
-                    Stations
+                    Dépotages
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <span data-feather="file"><i class="fas fa-gas-pump"></i></span>
+                    Employés
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <span data-feather="file"><i class="fas fa-gas-pump"></i></span>
+                    Mes Taches
                 </a>
             </li>
         </ul>

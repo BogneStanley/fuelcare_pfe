@@ -16,7 +16,7 @@ class AdminStationController extends Controller
         return view("admin.station",["stations"=>$stations]);
     }
 
-    public function create(Request $request,)
+    public function create(Request $request)
     {
         $validator = $request->validate([
             "ville"=>"required",

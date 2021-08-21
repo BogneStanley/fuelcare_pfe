@@ -193,7 +193,7 @@
 
     <header class="navbar shadow-sm navbar-light sticky-top flex-md-nowrap p-0" style="background-color: white ;">
         <a class="navbar-brand bg-dark text-center col-md-3 col-lg-2 me-0 px-3" href="#"><span style="font-size:25px;color:rgb(255, 60, 0);"><i class="fas fa-gas-pump"></i></span><span
-                style="font-weight: 500; color:white;">Fluel<span style="color: rgb(255, 60, 0)">Care</span></span></a>
+                style="font-weight: 500; color:white;">Fuel<span style="color: rgb(255, 60, 0)">Care</span></span></a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">

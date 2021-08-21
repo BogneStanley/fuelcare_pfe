@@ -3,7 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProfil;
 use App\Http\Controllers\AdminStationController;
+use App\Http\Controllers\CuveController;
 use App\Http\Controllers\GerantController;
+use App\Http\Controllers\RapportController;
 use App\Http\Controllers\TacheController;
 use App\Models\Station;
 use App\Models\User;
@@ -61,7 +63,14 @@ Route::get('admin/profil',[AdminProfil::class, "index"])->name("admin.profil");
 
 
 // gerant routes
+Route::delete('gerant/rapports/{id}', [RapportController::class, "delete"])->middleware("auth");
+Route::get('gerant/rapports/{id}', [RapportController::class, "download"])->middleware("auth");
 Route::get('gerant', [GerantController::class, "index"])->name("gerant.home")->middleware("auth");
+Route::get('gerant/cuves', [CuveController::class, "index"])->name("gerant.cuve")->middleware("auth");
+Route::post('gerant/rapports', [RapportController::class, "create"])->middleware("auth");
+Route::get('gerant/rapports', [RapportController::class, "index"])->name("gerant.rapports")->middleware("auth");
+
+
 
 
 
@@ -73,7 +82,9 @@ Route::get('/test',function () {
     dd($te);
 
 
-});
+});*/
+
+/*
 Route::get('/user',function () {
     $user = new User();
     $user->email = "admin@admin.test";
