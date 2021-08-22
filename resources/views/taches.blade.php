@@ -1,56 +1,13 @@
 @extends("gerant.layout")
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h4">Tableau de bord</h1>
+        <h1 class="h4">Mes Tâches</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
         </div>
     </div>
-    <div class="row justify-content-between mt-5">
-        <div class="col-md-12 p-4 shadow bg-white">
-            <h5>Etat des cuves</h5>
-            <div class="row justify-content-center">
-                <div class="col-md-4 d-flex my-5 justify-content-center">
-                    <div>
-                        <h6 class="text-center">Cuve 1</h6>
-                        <div class="cuve shadow">
-                            <div class="niveauTexte">
-                                30%
-                            </div>
-                            <div class="niveau niveau3">
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4 d-flex my-5 justify-content-center">
-                    <div>
-                        <h6 class="text-center">Cuve 2</h6>
-                        <div class="cuve shadow">
-                            <div class="niveauTexte">
-                                0%
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 d-flex my-5 justify-content-center">
-                    <div>
-                        <h6 class="text-center">Cuve 3</h6>
-                        <div class="cuve shadow">
-                            <div class="niveauTexte">
-                                0%
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div class="row justify-content-center mt-3">
-        <div class="col-md-12 p-4 shadow bg-white">
-            <h5>Liste des tâches non terminées</h5>
+        <div class="col-md-8 p-4 shadow bg-white">
+            <h5>Liste des tâches</h5>
             <table class="table">
                 <thead>
                     <tr>
@@ -61,7 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (Auth::user()->taches()->get()->where("status",false) as $tache)
+                    @foreach (Auth::user()->taches()->get() as $tache)
                         <tr>
                             <td>
                                 <div class="accordion" id="accordionPanelsStayOpenExample">

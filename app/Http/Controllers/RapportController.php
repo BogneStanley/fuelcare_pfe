@@ -13,8 +13,9 @@ class RapportController extends Controller
     //
     public function index()
     {
+        $page = "rapports";
         $rapports = Auth::user()->rapports;
-        return view("gerant.rapports", ["rapports"=>$rapports]);
+        return view("gerant.rapports", ["rapports"=>$rapports,"page"=>$page]);
     }
 
     public function create(Request $request)

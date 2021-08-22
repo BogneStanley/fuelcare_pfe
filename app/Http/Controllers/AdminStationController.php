@@ -12,8 +12,9 @@ class AdminStationController extends Controller
     //
     public function index()
     {
+        $page = "stations";
         $stations = Station::all();
-        return view("admin.station",["stations"=>$stations]);
+        return view("admin.station",["stations"=>$stations,"page"=>$page]);
     }
 
     public function create(Request $request)
@@ -26,11 +27,12 @@ class AdminStationController extends Controller
         $station = new Station();
         $station->lieu_station = $validator["ville"]."-".$validator["quartier"];
         $station->save();
-        return redirect()->route("admin.station");
+        return back();
     }
 
     public function store($id)
     {
+        $page = "stations";
         $station = Station::findOrFail($id);
         $users = $station->users()->get();
         $gerant=null;
@@ -39,7 +41,7 @@ class AdminStationController extends Controller
                 $gerant = $user;
             }
         }
-        return view("admin.station_store",["station"=>$station,"gerant"=>$gerant]);
+        return view("admin.station_store",["station"=>$station,"gerant"=>$gerant,"page"=>$page]);
 
     }
 

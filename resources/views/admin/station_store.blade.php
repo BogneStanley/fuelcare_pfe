@@ -46,12 +46,11 @@
     </div>
 
     @if (!$errors->isEmpty())
-    {{ dd($errors) }}
         <div class="modal fade show" id="my-modal" style="display: block" tabindex="-1" aria-labelledby="exampleModalLabel">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title alert alert-danger" id="exampleModalLabel">Une erreur c'est produite
+                        <h5 class="modal-title alert alert-danger" id="exampleModalLabel">Une erreur lors de l'operation
                         </h5>
                         <button type="button" class="btn-close" id="my-modal-closer" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -320,7 +319,7 @@
                                             style="color: rgb(221, 31, 24)">En cours</span> @endif
                                 </td>
                                 <td>
-                                    <form action="{{ route('admin.station.tache') }}/{{ $station->id }}"
+                                    <form action="{{ route('admin.station.tache') }}/{{ $tache->id }}"
                                         method="post">
                                         @csrf
                                         @method("delete")
@@ -337,14 +336,23 @@
         <div class="row justify-content-between mt-5">
             <div class="col-md-12 p-4 shadow bg-white">
                 <h5>Liste des rapports</h5>
-                <table class="table">
+                <table class="table text-center " style="padding-left: 10px;">
                     <thead>
                         <tr>
-                            <th scope="col">Date</th>
-                            <th scope="col">Télecharger</th>
+                            <th class="text-start" scope="col">Rapport</th>
+                            <th class="text-start" scope="col">Création</th>
+                            <th scope="col">Télécharger</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($gerant->rapports as $rapport)
+                            <tr>
+                                <td class="text-start">{{ $rapport->piece_jointe }}</td>
+                                <td class="text-start">{{ $rapport->created_at }}</td>
+                                <td><a href="{{ route('gerant.rapports') }}/{{ $rapport->id }}"><i
+                                            class="fas fa-download"></i></a></td>
+                            </tr>
+                        @endforeach
 
                     </tbody>
                 </table>

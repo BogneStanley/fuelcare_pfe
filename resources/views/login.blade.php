@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Signin Template · Bootstrap v5.0</title>
+    <title>Connexion</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
 
@@ -82,7 +82,7 @@
     @csrf
     <div class="h1"><span style="font-size:40px;color:rgb(255, 60, 0);"><i class="fas fa-gas-pump"></i></span>Fuel<span style="color: #da300a">Care</span></div>
 
-    <div class="form-floating">
+    <div class="form-floating mb-2">
       <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
       <label for="floatingInput">Email</label>
     </div>

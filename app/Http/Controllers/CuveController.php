@@ -8,6 +8,7 @@ class CuveController extends Controller
 {
     //
     public function index(){
-        return view("gerant.cuve");
+        $page = "cuve";
+        return view("gerant.cuve",["page"=>$page]);
     }
 }

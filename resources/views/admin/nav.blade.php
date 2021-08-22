@@ -2,14 +2,14 @@
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link @if(Route::currentRouteName() == "admin.home") active @endif " aria-current="page" href="{{ route("admin.home") }}">
-                    <span data-feather="home"><i class="fa fa-home" aria-hidden="true"></i></span>
+                <a class="nav-link @if(isset($page) and $page == "home") active @endif " aria-current="page" href="{{ route("admin.home") }}">
+                    <span class="me-2" data-feather="home"><i class="fa fa-home" aria-hidden="true"></i></span>
                     Tableau de bord
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if(Route::currentRouteName() == "admin.station") active @endif" href="{{ route("admin.station") }}">
-                    <span data-feather="file"><i class="fas fa-gas-pump"></i></span>
+                <a class="nav-link @if(isset($page) and $page == "stations") active @endif" href="{{ route("admin.station") }}">
+                    <span class="me-2" data-feather="file"><i class="fas fa-gas-pump"></i></span>
                     Stations
                 </a>
             </li>

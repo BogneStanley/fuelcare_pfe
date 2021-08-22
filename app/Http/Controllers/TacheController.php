@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class TacheController extends Controller
 {
+    public function index()
+    {
+        $page = "taches";
+        return view("taches", ["page"=>$page]);
+    }
     // creation d'une tâche
     public function create(Request $request, $id){
         $validator = $request->validate([
@@ -20,6 +25,16 @@ class TacheController extends Controller
         $tache->status = false;
         $tache->user_id = $id;
         $tache->piece_jointe = null;
+        $tache->save();
+
+        return back();
+    }
+
+    public function changeState(int $id)
+    {
+        $tache = Tache::findOrFail($id);
+
+        $tache->status = !$tache->status;
         $tache->save();
 
         return back();

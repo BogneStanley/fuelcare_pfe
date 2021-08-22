@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AdminProfil extends Controller
+class ProfilController extends Controller
 {
     //afficher la page de profil de l'administrateur
 
     public function index()
     {
-        return view("admin.profile");
+        if (Auth::user()->status == 0) {
+            return view("admin.profile");
+        }elseif(Auth::user()->status == 1){
+            return view("gerant.profile");
+        }
     }
     public function update(Request $request, $id)
     {

@@ -129,7 +129,7 @@
             width: 35px;
             height: 35px;
             border-radius: 50%;
-            background: linear-gradient(60deg,red,blue);
+            background: rgb(252, 83, 31);
         }
 
         @media (max-width: 767px) {
@@ -182,6 +182,14 @@
             transform: translate(-50%,-50%);
             z-index: 2;
             font-weight: 900
+        }
+
+        .active{
+            color: rgb(255, 60, 0) !important;
+            border-left: 8px rgb(255, 60, 0) solid;
+            /* border-top: 1px rgb(255, 60, 0) solid; */
+            /* border-bottom: 1px rgb(255, 60, 0) solid; */
+            background-color: rgba(255, 60, 0, 0.186);
         }
     </style>
 

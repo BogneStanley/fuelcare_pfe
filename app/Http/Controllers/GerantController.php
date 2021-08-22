@@ -8,6 +8,7 @@ class GerantController extends Controller
 {
     //
     public function index(){
-        return view("gerant.home");
+        $page = "home";
+        return view("gerant.home", ["page"=>$page]);
     }
 }
