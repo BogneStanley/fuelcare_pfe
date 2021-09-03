@@ -13,9 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-
+    <link rel="stylesheet" href= {{ asset('fontawesome-free-5.15.4-web/css/all.css') }}/>
 
 
 
@@ -166,14 +164,13 @@
             width: 100%;
             height: 95%;
             background:linear-gradient(rgb(130, 250, 140),rgb(34, 214, 43))
+            transition: 0.5s all;
         }
         .niveau2{
-            height: 60%;
             background:linear-gradient(rgb(255, 233, 111),rgb(255, 185, 55))
         }
         .niveau3{
 
-            height: 30%;
             background:linear-gradient(rgb(255, 103, 93),rgb(255, 32, 32))
         }
         .niveauTexte{
@@ -222,8 +219,9 @@
 
     <div class="container-fluid">
         <div class="row">
-            @include("gerant.nav")
+            @include("employe.nav")
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                @include("flash-message")
                 @yield("content")
             </main>
         </div>
@@ -232,9 +230,6 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
-        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
-    </script>
 </body>
 
 </html>

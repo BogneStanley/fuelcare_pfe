@@ -7,19 +7,6 @@
     </div>
     <div>
         <div class="row">
-
-            @if(!$errors->isEmpty())
-            <div class="modal fade show" id="my-modal" style="display: block" tabindex="-1" aria-labelledby="exampleModalLabel">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title alert alert-danger" id="exampleModalLabel">Erreur lors de l'ajout de la station</h5>
-                    <button type="button" class="btn-close" id="my-modal-closer" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            @endif
             <div class="col-md-3 mb-3">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Ajouter une station
@@ -86,11 +73,4 @@
             </div>
         </div>
     </div>
-    <script>
-        closer = document.querySelector("#my-modal-closer")
-        my_modal = document.querySelector("#my-modal")
-        closer.addEventListener("click",()=>{
-            my_modal.style.display = "none"
-        });
-    </script>
 @endsection

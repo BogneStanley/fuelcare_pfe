@@ -34,7 +34,7 @@ class RapportController extends Controller
         $rapport->save();
         $request->file("my_file")->storeAs("rapports",$filename);
 
-        return back();
+        return back()->with("success","Rapport créer avec succès");
 
     }
 
@@ -43,7 +43,7 @@ class RapportController extends Controller
         $rapport = Rapport::find($id);
         Storage::delete("rapports"."//".$rapport->piece_jointe);
         $rapport->delete();
-        return back();
+        return back()->with("success","Le rapport a bien été supprimer");
     }
 
     public function download($id)

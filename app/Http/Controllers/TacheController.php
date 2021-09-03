@@ -10,7 +10,7 @@ class TacheController extends Controller
     public function index()
     {
         $page = "taches";
-        return view("taches", ["page"=>$page]);
+        return view("gerant.taches", ["page"=>$page]);
     }
     // creation d'une tâche
     public function create(Request $request, $id){
@@ -27,7 +27,7 @@ class TacheController extends Controller
         $tache->piece_jointe = null;
         $tache->save();
 
-        return back();
+        return back()->with("success","Tâche ajouter avec succès");
     }
 
     public function changeState(int $id)
@@ -44,6 +44,6 @@ class TacheController extends Controller
     {
         $tache = Tache::find($id);
         $tache->delete();
-        return back();
+        return back()->with("success","La tâche a bien été supprimer");
     }
 }

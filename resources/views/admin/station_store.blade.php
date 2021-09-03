@@ -13,7 +13,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ajout d'une station</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Mettre a jour la station {{ $station->lieu_station }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form action="{{ route('admin.station') }}/{{ $station->id }}" method="post">
@@ -44,21 +44,6 @@
         </div>
 
     </div>
-
-    @if (!$errors->isEmpty())
-        <div class="modal fade show" id="my-modal" style="display: block" tabindex="-1" aria-labelledby="exampleModalLabel">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title alert alert-danger" id="exampleModalLabel">Une erreur lors de l'operation
-                        </h5>
-                        <button type="button" class="btn-close" id="my-modal-closer" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
 
     @if ($station->users->isEmpty())
         <div class="row justify-content-center">
@@ -190,7 +175,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Ajout d'une tâche</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -254,10 +239,7 @@
                             <h6 class="text-center">Cuve 2</h6>
                             <div class="cuve shadow">
                                 <div class="niveauTexte">
-                                    60%
-                                </div>
-                                <div class=" niveau niveau2">
-
+                                    0%
                                 </div>
                             </div>
                         </div>
@@ -267,10 +249,7 @@
                             <h6 class="text-center">Cuve 3</h6>
                             <div class="cuve shadow">
                                 <div class="niveauTexte">
-                                    30%
-                                </div>
-                                <div class="niveau niveau3">
-
+                                    0%
                                 </div>
                             </div>
                         </div>
@@ -333,8 +312,8 @@
                 </table>
             </div>
         </div>
-        <div class="row justify-content-between mt-5">
-            <div class="col-md-12 p-4 shadow bg-white">
+        <div class="row justify-content-between mt-5" >
+            <div class="col-md-12 p-4 shadow bg-white" style="overflow-y: scroll">
                 <h5>Liste des rapports</h5>
                 <table class="table text-center " style="padding-left: 10px;">
                     <thead>
@@ -349,7 +328,7 @@
                             <tr>
                                 <td class="text-start">{{ $rapport->piece_jointe }}</td>
                                 <td class="text-start">{{ $rapport->created_at }}</td>
-                                <td><a href="{{ route('gerant.rapports') }}/{{ $rapport->id }}"><i
+                                <td><a href="{{ route('admin.station.rapport') }}/{{ $rapport->id }}"><i
                                             class="fas fa-download"></i></a></td>
                             </tr>
                         @endforeach
@@ -361,10 +340,34 @@
     @endif
 
     <script>
-        closer = document.querySelector("#my-modal-closer")
-        my_modal = document.querySelector("#my-modal")
-        closer.addEventListener("click", () => {
-            my_modal.style.display = "none"
-        });
+        var cuve = document.querySelector(".cuve")
+        var niveau = document.querySelector(".niveau")
+        var niveauTexte = document.querySelector(".niveauTexte")
+        var hauteurCuve = cuve.clientHeight
+        var posNiveau = niveau.getBoundingClientRect()
+        var hauteurNiveau = posNiveau.height
+
+        setInterval(()=>{
+        fetch("http://192.168.4.1/").then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          var level = data.level;
+          var nouvelHauteur = hauteurCuve - (parseInt(level)*(hauteurCuve/20))
+          niveau.style.height = ""+ nouvelHauteur + "px";
+          var pourcentage = (nouvelHauteur/hauteurCuve)*100
+          var intPourcentage = parseInt(pourcentage) ;
+          niveauTexte.innerHTML = "" + intPourcentage +"%"
+          if (pourcentage > 60) {
+              niveau.classList.remove("niveau2")
+              niveau.classList.remove("niveau3")
+          }else if (pourcentage > 30) {
+            niveau.classList.add("niveau2")
+            niveau.classList.remove("niveau3")
+          }else if ((pourcentage < 30) && (pourcentage > 0)){
+            niveau.classList.add("niveau3")
+            niveau.classList.remove("niveau2")
+          }
+        })}, 200);
+
     </script>
 @endsection

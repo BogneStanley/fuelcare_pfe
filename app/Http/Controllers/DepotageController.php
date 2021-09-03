@@ -30,7 +30,7 @@ class DepotageController extends Controller
         $depotage->save();
         $request->file("my_file")->storeAs("depotages",$filename);
 
-        return back();
+        return back()->with("success","Fiche de dépotage créer avec succès");
 
     }
 
@@ -39,7 +39,7 @@ class DepotageController extends Controller
         $depotage = Depotage::find($id);
         Storage::delete("depotages"."//".$depotage->piece_jointe);
         $depotage->delete();
-        return back();
+        return back()->with("success","La fiche a bien été supprimer");
     }
 
     public function download($id)

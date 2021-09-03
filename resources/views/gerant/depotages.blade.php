@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-11 p-5 shadow bg-white">
+        <div class="col-md-11 p-5 shadow bg-white" style="overflow-x: scroll">
             <h4>Liste des fiches de dépotages</h4>
             <table class="table text-center " style="padding-left: 10px;">
                 <thead>

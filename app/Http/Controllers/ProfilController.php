@@ -17,6 +17,8 @@ class ProfilController extends Controller
             return view("admin.profile");
         }elseif(Auth::user()->status == 1){
             return view("gerant.profile");
+        }elseif(Auth::user()->status == 2){
+            return view("employe.profile");
         }
     }
     public function update(Request $request, $id)
@@ -33,6 +35,6 @@ class ProfilController extends Controller
         $user->password = Hash::make($validator["password"]) ;
         $user->save();
 
-        return back();
+        return back()->with("success","Votre profil a été mise a jour");
     }
 }

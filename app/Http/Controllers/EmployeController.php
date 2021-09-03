@@ -13,9 +13,13 @@ class EmployeController extends Controller
 
     public function index()
     {
-        $page = "employe" ;
-        $employes = Auth::user()->stations[0]->users->where("status",2);
-        return view("gerant.employe",["employes"=>$employes,"page"=>$page]);
+        if (Auth::user()->status == 1) {
+            $page = "employe" ;
+            $employes = Auth::user()->stations[0]->users->where("status",2);
+            return view("gerant.employe",["employes"=>$employes,"page"=>$page]);
+        }
+
+        return view("employe.taches");
     }
 
     public function store($id)

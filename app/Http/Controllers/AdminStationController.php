@@ -27,7 +27,7 @@ class AdminStationController extends Controller
         $station = new Station();
         $station->lieu_station = $validator["ville"]."-".$validator["quartier"];
         $station->save();
-        return back();
+        return back()->with("success","La station a bien été créer");
     }
 
     public function store($id)
@@ -55,7 +55,7 @@ class AdminStationController extends Controller
         $station = Station::findOrFail($id);
         $station->lieu_station = $validator["ville"]."-".$validator["quartier"];
         $station->save();
-        return back();
+        return back()->with("success","La station a bien été mise a jour");
     }
 
     public function delete($id)
@@ -67,7 +67,7 @@ class AdminStationController extends Controller
             $user->delete();
         }
 
-        return back();
+        return back()->with("success","La station a bien été supprimer");
 
 
     }

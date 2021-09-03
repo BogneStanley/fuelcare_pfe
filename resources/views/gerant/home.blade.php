@@ -49,7 +49,7 @@
 
 
     <div class="row justify-content-center mt-3">
-        <div class="col-md-12 p-4 shadow bg-white">
+        <div class="col-md-12 p-4 shadow bg-white" style="overflow-y: scroll">
             <h5>Liste des tâches non terminées</h5>
             <table class="table">
                 <thead>
@@ -112,4 +112,36 @@
             </table>
         </div>
     </div>
+
+    <script>
+        var cuve = document.querySelector(".cuve")
+        var niveau = document.querySelector(".niveau")
+        var niveauTexte = document.querySelector(".niveauTexte")
+        var hauteurCuve = cuve.clientHeight
+        var posNiveau = niveau.getBoundingClientRect()
+        var hauteurNiveau = posNiveau.height
+
+        setInterval(()=>{
+        fetch("http://192.168.4.1/").then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          var level = data.level;
+          var nouvelHauteur = hauteurCuve - (parseInt(level)*(hauteurCuve/20))
+          niveau.style.height = ""+ nouvelHauteur + "px";
+          var pourcentage = (nouvelHauteur/hauteurCuve)*100
+          var intPourcentage = parseInt(pourcentage) ;
+          niveauTexte.innerHTML = "" + intPourcentage +"%"
+          if (pourcentage > 60) {
+              niveau.classList.remove("niveau2")
+              niveau.classList.remove("niveau3")
+          }else if (pourcentage > 30) {
+            niveau.classList.add("niveau2")
+            niveau.classList.remove("niveau3")
+          }else if ((pourcentage < 30) && (pourcentage > 0)){
+            niveau.classList.add("niveau3")
+            niveau.classList.remove("niveau2")
+          }
+        })}, 200);
+
+    </script>
 @endsection

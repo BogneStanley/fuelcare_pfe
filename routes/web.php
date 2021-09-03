@@ -49,41 +49,64 @@ Route::get('/logout',[UserController::class, "logout"])->name("logout")->middlew
 
 
 // admin routes
-Route::delete('admin/stations/{id}', [AdminStationController::class, "delete"])->middleware("auth");
-Route::delete('admin/stations/tache/{id}', [TacheController::class, "delete"])->middleware("auth");
-Route::put('admin/stations/user/{id}', [UserController::class, "update"])->middleware("auth");
-Route::put('admin/profil/{id}',[ProfilController::class, "update"])->name("admin.profil");
-Route::put('admin/stations/{id}', [AdminStationController::class, "update"])->middleware("auth");
-Route::get('admin', [AdminController::class, "index"])->name("admin.home")->middleware("auth");
-Route::get('admin/stations', [AdminStationController::class, "index"])->name("admin.station")->middleware("auth");
-Route::get('admin/stations/{id}', [AdminStationController::class, "store"])->middleware("auth");
-Route::post('admin/stations', [AdminStationController::class, "create"])->middleware("auth");
-Route::post('admin/stations/{id}', [UserController::class, "create"])->middleware("auth");
-Route::get('admin/stations/tache', [TacheController::class, "create"])->name("admin.station.tache");
-Route::post('admin/stations/tache/{id}', [TacheController::class, "create"]);
-Route::get('admin/profil',[ProfilController::class, "index"])->name("admin.profil");
+
+Route::middleware(['auth','user_status:0'])->group(function(){
+    Route::delete('admin/stations/{id}', [AdminStationController::class, "delete"]);
+    Route::delete('admin/stations/tache/{id}', [TacheController::class, "delete"]);
+    Route::put('admin/stations/user/{id}', [UserController::class, "update"]);
+    Route::put('admin/profil/{id}',[ProfilController::class, "update"]);
+    Route::put('admin/stations/{id}', [AdminStationController::class, "update"]);
+    Route::get('admin', [AdminController::class, "index"])->name("admin.home");
+    Route::get('admin/stations', [AdminStationController::class, "index"])->name("admin.station");
+    Route::get('admin/stations/{id}', [AdminStationController::class, "store"]);
+    Route::post('admin/stations', [AdminStationController::class, "create"]);
+    Route::post('admin/stations/{id}', [UserController::class, "create"]);
+    Route::get('admin/stations/tache', function(){return abort(404);})->name("admin.station.tache");
+    Route::post('admin/stations/tache/{id}', [TacheController::class, "create"]);
+    Route::get('admin/profil',[ProfilController::class, "index"])->name("admin.profil");
+    Route::get('admin/stations/rapport', function (){ abort(404); })->name("admin.station.rapport");
+    Route::get('admin/stations/rapport/{id}', [RapportController::class, "download"]);
+
+});
 
 
-// gerant routes
-Route::delete('gerant/rapports/{id}', [RapportController::class, "delete"])->middleware("auth");
-Route::get('gerant/rapports/{id}', [RapportController::class, "download"])->middleware("auth");
-Route::post('gerant/employes/{id}', [UserController::class, "create"])->middleware("auth");
-Route::get('gerant/employes/{id}', [EmployeController::class, "store"])->middleware("auth");
-Route::delete('gerant/depotages/{id}', [DepotageController::class, "delete"])->middleware("auth");
-Route::delete('gerant/employes/tache/{id}', [TacheController::class, "delete"])->middleware("auth");
-Route::get('gerant/depotages/{id}', [DepotageController::class, "download"])->middleware("auth");
-Route::get('gerant', [GerantController::class, "index"])->name("gerant.home")->middleware("auth");
-Route::get('gerant/cuves', [CuveController::class, "index"])->name("gerant.cuve")->middleware("auth");
-Route::post('gerant/rapports', [RapportController::class, "create"])->middleware("auth");
-Route::get('gerant/rapports', [RapportController::class, "index"])->name("gerant.rapports")->middleware("auth");
-Route::post('gerant/depotages', [DepotageController::class, "create"])->middleware("auth");
-Route::get('gerant/depotages', [DepotageController::class, "index"])->name("gerant.depotages")->middleware("auth");
-Route::get('gerant/employes', [EmployeController::class, "index"])->name("gerant.employes")->middleware("auth");
-Route::get('gerant/employes/tache', function(){ return back(404); })->name("gerant.employes.tache");
-Route::post('gerant/employes/tache/{id}', [TacheController::class, "create"]);
-Route::get('gerant/tache', [TacheController::class, "index"])->name("gerant.tache");
-Route::put('gerant/tache/{id}', [TacheController::class, "changeState"])->middleware("auth");
-Route::get('gerant/profil',[ProfilController::class, "index"])->name("gerant.profil");
+Route::middleware(['auth','user_status:1'])->group(function(){
+    Route::delete('gerant/rapports/{id}', [RapportController::class, "delete"]);
+    Route::get('gerant/rapports/{id}', [RapportController::class, "download"]);
+    Route::post('gerant/employes/{id}', [UserController::class, "create"]);
+    Route::get('gerant/employes/{id}', [EmployeController::class, "store"]);
+    Route::delete('gerant/depotages/{id}', [DepotageController::class, "delete"]);
+    Route::delete('gerant/employes/tache/{id}', [TacheController::class, "delete"]);
+    Route::get('gerant/depotages/{id}', [DepotageController::class, "download"]);
+    Route::get('gerant', [GerantController::class, "index"])->name("gerant.home");
+    Route::get('gerant/cuves', [CuveController::class, "index"])->name("gerant.cuve");
+    Route::post('gerant/rapports', [RapportController::class, "create"]);
+    Route::get('gerant/rapports', [RapportController::class, "index"])->name("gerant.rapports");
+    Route::post('gerant/depotages', [DepotageController::class, "create"]);
+    Route::get('gerant/depotages', [DepotageController::class, "index"])->name("gerant.depotages");
+    Route::get('gerant/employes', [EmployeController::class, "index"])->name("gerant.employes");
+    Route::get('gerant/employes/tache', function(){ return abort(404); })->name("gerant.employes.tache");
+    Route::post('gerant/employes/tache/{id}', [TacheController::class, "create"]);
+    Route::get('gerant/tache', [TacheController::class, "index"])->name("gerant.tache");
+    Route::put('gerant/tache/{id}', [TacheController::class, "changeState"]);
+    Route::get('gerant/profil',[ProfilController::class, "index"])->name("gerant.profil");
+    Route::put('gerant/profil/{id}', [ProfilController::class, "update"]);
+
+
+});
+
+
+
+Route::middleware(['auth','user_status:2'])->group(function(){
+    Route::get('employe', [EmployeController::class, "index"])->name("employe.home");
+    Route::get('employe/profil',[ProfilController::class, "index"])->name("employe.profil");
+    Route::put('employe/profil/{id}', [ProfilController::class, "update"]);
+    Route::put('employe/tache/{id}', [TacheController::class, "changeState"]);
+    Route::put('employe/tache', function (){ redirect()->route("employe.home");})->name("employe.tache");
+
+});
+
+//route employé
 
 
 

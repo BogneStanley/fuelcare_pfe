@@ -45,7 +45,7 @@ class UserController extends Controller
             "user_id" => $user->id,
 
         ]);
-        return back()->with("user_success");
+        return back()->with("success","Création reussi");
 
 
 
@@ -65,7 +65,7 @@ class UserController extends Controller
                 return redirect("employe")->withSusses("ok");
             }
         }
-        return redirect()->route("login");
+        return redirect()->route("login")->with("errors","Tâche ajouter avec succès");
 
     }
 
@@ -92,6 +92,7 @@ class UserController extends Controller
         $user->password = Hash::make($validator["password"]) ;
         $user->save();
 
-        return back();
+        return back()->with("success","Modification reussi");
     }
+
 }
